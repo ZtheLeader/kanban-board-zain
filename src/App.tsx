@@ -1,11 +1,11 @@
-
-function App() {
-
+const App = () => {
   return (
     <div>
-      Zain's Kanban Board
+      <h1 className="text-3xl font-bold underline">
+       Zain's Kanban Board
+      </h1>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

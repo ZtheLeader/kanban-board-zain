@@ -46,7 +46,24 @@ export const kanbanReducer = (state: KanbanStateType, action: Action): KanbanSta
       };
     }
     case 'ADD_TASK': {
-      return state;
+      const { taskId, columnId, title, description } = action.payload;
+      const newTasks = {
+        ...state.tasks,
+        [taskId]: { id: taskId, title, description },
+      };
+      const newColumnTaskIds = [...state.columns[columnId].taskIds, taskId];
+      const newColumns = {
+        ...state.columns,
+        [columnId]: {
+          ...state.columns[columnId],
+          taskIds: newColumnTaskIds,
+        },
+      };
+      return {
+        ...state,
+        columns: newColumns,
+        tasks: newTasks,
+      };
     }
     case 'EDIT_TASK': {
       return state;

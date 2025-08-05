@@ -1,15 +1,28 @@
-import type { ColumnType } from '../../types/kanban';
 import { useKanban } from '../../context/kanban/useKanban';
+import type { ColumnType } from '../../types/kanban';
+import TaskCard from './TaskCard';
 
 type ColumnProps = {
   column: ColumnType;
 };
 
 const Column = ({ column }: ColumnProps) => {
-  const { dispatch } = useKanban();
+  const { state, dispatch } = useKanban();
+
+  const tasks = column.taskIds.map(taskId => state.tasks[taskId]);
 
   const handleDeleteColumn = () => {
     dispatch({ type: 'DELETE_COLUMN', payload: { id: column.id } });
+  };
+
+  const handleAddTask = () => {
+    const taskId = Date.now().toString();
+    const title = 'New Task';
+    const description = 'This is a new task.';
+    dispatch({
+      type: 'ADD_TASK',
+      payload: { taskId, columnId: column.id, title, description },
+    });
   };
 
   return (
@@ -24,6 +37,19 @@ const Column = ({ column }: ColumnProps) => {
           X
         </button>
       </div>
+
+      <div className="flex flex-col gap-2 overflow-y-auto">
+        {tasks.map(task => (
+          <TaskCard key={task.id} task={task} />
+        ))}
+      </div>
+
+      <button
+        onClick={handleAddTask}
+        className="mt-4 w-full p-2 rounded-lg bg-gray-700 hover:bg-gray-600 transition-colors duration-200 text-gray-300 font-medium"
+      >
+        + Add task
+      </button>
     </div>
   );
 };

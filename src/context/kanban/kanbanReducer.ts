@@ -14,7 +14,14 @@ export type Action =
 export const kanbanReducer = (state: KanbanStateType, action: Action): KanbanStateType => {
   switch (action.type) {
     case 'ADD_COLUMN': {
-      return state;
+      const { id, title } = action.payload;
+      return {
+        ...state, 
+        columns: {
+          ...state.columns,
+          [id]: { id, title, taskIds: [] },
+        },
+      };
     }
     case 'RENAME_COLUMN': {
       return state;

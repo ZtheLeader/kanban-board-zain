@@ -1,6 +1,7 @@
-import TaskCard from './TaskCard';
-import type { ColumnType } from '../../types/kanban';
+import { Droppable } from '@hello-pangea/dnd';
 import { useKanban } from '../../context/kanban/useKanban';
+import type { ColumnType } from '../../types/kanban';
+import TaskCard from './TaskCard';
 
 type ColumnProps = {
   column: ColumnType;
@@ -17,12 +18,11 @@ const Column = ({ column }: ColumnProps) => {
 
   const handleAddTask = () => {
     const taskId = Date.now().toString();
-    const title = 'New Task';
-    const description = 'This is a new task.';
- 
+    const taskTitle = 'New Task';
+    const taskDescription = 'This is a new task.';
     dispatch({
       type: 'ADD_TASK',
-      payload: { taskId, columnId: column.id, title, description },
+      payload: { taskId, columnId: column.id, title: taskTitle, description: taskDescription },
     });
   };
 
@@ -39,11 +39,21 @@ const Column = ({ column }: ColumnProps) => {
         </button>
       </div>
 
-      <div className="flex flex-col gap-2 overflow-y-auto">
-        {tasks.map(task => (
-          <TaskCard key={task.id} task={task} columnId={column.id} />
-        ))}
-      </div>
+      <Droppable droppableId={column.id}>
+        {(provided, snapshot) => (
+          <div
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+            className={`flex flex-col gap-2 overflow-y-auto transition-colors duration-200 ${snapshot.isDraggingOver ? 'bg-gray-700' : ''
+              }`}
+          >
+            {tasks.map((task, index) => (
+              <TaskCard key={task.id} task={task} index={index} columnId={column.id} />
+            ))}
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
 
       <button
         onClick={handleAddTask}

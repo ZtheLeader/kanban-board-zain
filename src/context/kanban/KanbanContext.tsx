@@ -2,10 +2,10 @@
 import React, { createContext } from 'react';
 
 import type { Action } from './kanbanReducer';
-import type { KanbanState } from '../../types/kanban';
+import type { KanbanStateType } from '../../types/kanban';
 
 export const KanbanContext = createContext<{
-  state: KanbanState | null;
+  state: KanbanStateType | null;
   dispatch: React.Dispatch<Action>;
 }>({
   state: null,

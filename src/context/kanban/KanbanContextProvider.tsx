@@ -2,13 +2,13 @@ import { useReducer, type ReactNode } from "react";
 
 import { KanbanContext } from "./KanbanContext";
 import { kanbanReducer } from "./kanbanReducer";
-import type { KanbanState } from "../../types/kanban";
+import type { KanbanStateType } from "../../types/kanban";
 
 type KanbanProviderProps = {
   children: ReactNode;
 };
 
-const initialState: KanbanState = {
+const initialState: KanbanStateType = {
   columns: {
     'column-1': { id: 'column-1', title: 'To Do', taskIds: [] },
     'column-2': { id: 'column-2', title: 'In Progress', taskIds: [] },

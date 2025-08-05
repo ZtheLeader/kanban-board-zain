@@ -1,4 +1,4 @@
-import type { KanbanState } from "../../types/kanban";
+import type { KanbanStateType } from "../../types/kanban";
 
 export type Action =
   | { type: 'ADD_COLUMN'; payload: { id: string; title: string } }
@@ -11,7 +11,7 @@ export type Action =
   | { type: 'REORDER_TASK_IN_COLUMN'; payload: { taskId: string; columnId: string; newIndex: number } };
 
 
-export const kanbanReducer = (state: KanbanState, action: Action): KanbanState => {
+export const kanbanReducer = (state: KanbanStateType, action: Action): KanbanStateType => {
   switch (action.type) {
     case 'ADD_COLUMN': {
       return state;

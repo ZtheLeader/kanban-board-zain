@@ -101,10 +101,45 @@ export const kanbanReducer = (state: KanbanStateType, action: Action): KanbanSta
       };
     }
     case 'MOVE_TASK': {
-      return state;
+      const { taskId, fromColumnId, toColumnId, newIndex } = action.payload;
+      const fromColumn = state.columns[fromColumnId];
+      const toColumn = state.columns[toColumnId];
+
+      const newFromTaskIds = [...fromColumn.taskIds].filter(id => id !== taskId);
+      const newToTaskIds = [...toColumn.taskIds];
+      newToTaskIds.splice(newIndex, 0, taskId);
+
+      return {
+        ...state,
+        columns: {
+          ...state.columns,
+          [fromColumnId]: {
+            ...fromColumn,
+            taskIds: newFromTaskIds,
+          },
+          [toColumnId]: {
+            ...toColumn,
+            taskIds: newToTaskIds,
+          },
+        },
+      };
     }
     case 'REORDER_TASK_IN_COLUMN': {
-      return state;
+      const { taskId, columnId, newIndex } = action.payload;
+      const column = state.columns[columnId];
+      const newTasksIds = [...column.taskIds];
+      newTasksIds.splice(newTasksIds.indexOf(taskId), 1);
+      newTasksIds.splice(newIndex, 0, taskId);
+      return {
+        ...state,
+        columns: {
+          ...state.columns,
+          [columnId]: {
+            ...column,
+            taskIds: newTasksIds,
+          },
+        },
+      };
     }
     default:
       return state;

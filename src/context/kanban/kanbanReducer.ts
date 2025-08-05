@@ -27,7 +27,23 @@ export const kanbanReducer = (state: KanbanStateType, action: Action): KanbanSta
       return state;
     }
     case 'DELETE_COLUMN': {
-      return state;
+      const { id } = action.payload;
+
+      const taskIdsToDelete = state.columns[id].taskIds;
+
+      const newColumns = { ...state.columns };
+      delete newColumns[id];
+
+      const newTasks = { ...state.tasks };
+      taskIdsToDelete.forEach(taskId => {
+        delete newTasks[taskId];
+      });
+
+      return {
+        ...state,
+        columns: newColumns,
+        tasks: newTasks,
+      };
     }
     case 'ADD_TASK': {
       return state;

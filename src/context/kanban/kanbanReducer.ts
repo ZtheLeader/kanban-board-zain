@@ -66,10 +66,39 @@ export const kanbanReducer = (state: KanbanStateType, action: Action): KanbanSta
       };
     }
     case 'EDIT_TASK': {
-      return state;
+      const { taskId, title, description } = action.payload;
+      return {
+        ...state,
+        tasks: {
+          ...state.tasks,
+          [taskId]: {
+            ...state.tasks[taskId],
+            title,
+            description,
+          },
+        },
+      };
     }
     case 'DELETE_TASK': {
-      return state;
+      const { taskId, columnId } = action.payload;
+
+      const newTasks = { ...state.tasks };
+      delete newTasks[taskId];
+
+      const newColumnTaskIds = state.columns[columnId].taskIds.filter(id => id !== taskId);
+      const newColumns = {
+        ...state.columns,
+        [columnId]: {
+          ...state.columns[columnId],
+          taskIds: newColumnTaskIds,
+        },
+      };
+
+      return {
+        ...state,
+        columns: newColumns,
+        tasks: newTasks,
+      };
     }
     case 'MOVE_TASK': {
       return state;

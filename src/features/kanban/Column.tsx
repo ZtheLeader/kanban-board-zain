@@ -1,6 +1,6 @@
-import { useKanban } from '../../context/kanban/useKanban';
-import type { ColumnType } from '../../types/kanban';
 import TaskCard from './TaskCard';
+import type { ColumnType } from '../../types/kanban';
+import { useKanban } from '../../context/kanban/useKanban';
 
 type ColumnProps = {
   column: ColumnType;
@@ -19,6 +19,7 @@ const Column = ({ column }: ColumnProps) => {
     const taskId = Date.now().toString();
     const title = 'New Task';
     const description = 'This is a new task.';
+ 
     dispatch({
       type: 'ADD_TASK',
       payload: { taskId, columnId: column.id, title, description },
@@ -34,13 +35,13 @@ const Column = ({ column }: ColumnProps) => {
           className="text-gray-400 hover:text-red-500 font-bold transition-colors duration-200 text-2xl leading-none px-2"
           aria-label="Delete column"
         >
-          X
+          Delete
         </button>
       </div>
 
       <div className="flex flex-col gap-2 overflow-y-auto">
         {tasks.map(task => (
-          <TaskCard key={task.id} task={task} />
+          <TaskCard key={task.id} task={task} columnId={column.id} />
         ))}
       </div>
 

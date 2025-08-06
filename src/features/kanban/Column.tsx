@@ -32,7 +32,7 @@ const Column = ({ column }: ColumnProps) => {
         <h2 className="text-xl font-semibold text-gray-300">{column.title}</h2>
         <button
           onClick={handleDeleteColumn}
-          className="text-gray-400 hover:text-red-500 font-bold transition-colors duration-200 text-2xl leading-none px-2"
+          className="text-gray-400 hover:text-red-500 font-bold transition-colors duration-200 leading-none px-2"
           aria-label="Delete column"
         >
           Delete

@@ -12,7 +12,10 @@ const TaskCard = ({ task, columnId, index }: TaskCardProps) => {
   const { dispatch } = useKanban();
 
   const handleDeleteTask = () => {
-    dispatch({ type: 'DELETE_TASK', payload: { taskId: task.id, columnId } });
+    const confirmDelete = window.confirm("Are you sure you want to delete this task?");
+    if (confirmDelete) {
+      dispatch({ type: 'DELETE_TASK', payload: { taskId: task.id, columnId } });
+    }
   };
 
   const handleEditTask = () => {

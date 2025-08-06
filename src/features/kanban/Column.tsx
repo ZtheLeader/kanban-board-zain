@@ -13,13 +13,20 @@ const Column = ({ column }: ColumnProps) => {
   const tasks = column.taskIds.map(taskId => state.tasks[taskId]);
 
   const handleDeleteColumn = () => {
-    dispatch({ type: 'DELETE_COLUMN', payload: { id: column.id } });
+    const confirmDelete = window.confirm("Are you sure you want to delete this column?");
+    if (confirmDelete) {
+      dispatch({ type: 'DELETE_COLUMN', payload: { id: column.id } });
+    }
   };
 
   const handleAddTask = () => {
+    const taskTitle = window.prompt("Enter task title:");
+    if (!taskTitle) return;
+
+    const taskDescription = window.prompt("Enter task description:");
+    if (!taskDescription) return;
+
     const taskId = Date.now().toString();
-    const taskTitle = 'New Task';
-    const taskDescription = 'This is a new task.';
     dispatch({
       type: 'ADD_TASK',
       payload: { taskId, columnId: column.id, title: taskTitle, description: taskDescription },

@@ -17,8 +17,16 @@ const TaskCard = ({ task, columnId, index }: TaskCardProps) => {
 
   const handleEditTask = () => {
     const newTitle = window.prompt("Edit task title:", task.title);
-    if (newTitle) {
-      dispatch({ type: 'EDIT_TASK', payload: { taskId: task.id, title: newTitle, description: task.description } });
+    const newDescription = window.prompt("Edit task description:", task.description || "");
+    if (newTitle !== null && newDescription !== null) {
+      dispatch({ 
+        type: 'EDIT_TASK', 
+        payload: { 
+          taskId: task.id, 
+          title: newTitle, 
+          description: newDescription 
+        } 
+      });
     }
   };
 

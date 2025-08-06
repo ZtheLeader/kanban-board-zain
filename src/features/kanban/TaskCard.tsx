@@ -29,23 +29,29 @@ const TaskCard = ({ task, columnId, index }: TaskCardProps) => {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
-          className={`bg-gray-600 p-3 rounded-md shadow-md cursor-pointer hover:bg-gray-500 transition-colors duration-200 ${snapshot.isDragging ? 'bg-gray-500 shadow-xl' : ''
-            }`}
+          className={`bg-white p-3 rounded border border-gray-300 cursor-pointer hover:bg-gray-50 transition-colors duration-150 ${snapshot.isDragging ? 'border-blue-400 bg-blue-50' : ''}`}
         >
-          <div className="flex justify-between items-center">
-            <p className="font-semibold text-white">{task.title}</p>
+          <div className="flex justify-between items-center gap-2">
+            <div className="flex flex-col gap-1 min-w-0">
+              <p className="font-medium text-gray-700 truncate" title={task.title}>{task.title}</p>
+              {task.description && (
+                <span className="text-xs text-gray-500 truncate" title={task.description}>{task.description}</span>
+              )}
+            </div>
             <div className="flex gap-2">
               <button
                 onClick={handleEditTask}
-                className="text-gray-400 hover:text-white transition-colors duration-200 text-sm"
+                className="text-gray-600 hover:text-blue-600 text-xs px-2 py-1 border border-gray-200 rounded hover:border-blue-200"
                 aria-label="Edit task"
+                title="Edit task"
               >
                 Edit
               </button>
               <button
                 onClick={handleDeleteTask}
-                className="text-gray-400 hover:text-red-500 font-bold transition-colors duration-200 text-2xl leading-none"
+                className="text-gray-600 hover:text-red-600 text-xs px-2 py-1 border border-gray-200 rounded hover:border-red-200"
                 aria-label="Delete task"
+                title="Delete task"
               >
                 Delete
               </button>

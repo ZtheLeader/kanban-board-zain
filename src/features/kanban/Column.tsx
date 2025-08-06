@@ -57,8 +57,7 @@ const Column = ({ column }: ColumnProps) => {
           <div
             {...provided.droppableProps}
             ref={provided.innerRef}
-            className={`flex flex-col gap-2 overflow-y-auto transition-colors duration-200 ${snapshot.isDraggingOver ? 'bg-gray-700' : ''
-              }`}
+            className={`flex flex-col gap-2 overflow-y-auto transition-colors duration-200 ${snapshot.isDraggingOver ? 'bg-gray-700' : ''} min-h-[1px]`}
           >
             {tasks.map((task, index) => (
               <TaskCard key={task.id} task={task} index={index} columnId={column.id} />

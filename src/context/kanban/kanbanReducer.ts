@@ -24,7 +24,17 @@ export const kanbanReducer = (state: KanbanStateType, action: Action): KanbanSta
       };
     }
     case 'RENAME_COLUMN': {
-      return state;
+      const { id, newTitle } = action.payload;
+      return {
+        ...state,
+        columns: {
+          ...state.columns,
+          [id]: {
+            ...state.columns[id],
+            title: newTitle,
+          },
+        },
+      };
     }
     case 'DELETE_COLUMN': {
       const { id } = action.payload;

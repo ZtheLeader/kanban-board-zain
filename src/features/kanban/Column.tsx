@@ -26,17 +26,30 @@ const Column = ({ column }: ColumnProps) => {
     });
   };
 
+  const handleEditColumn = () => {
+    const newTitle = window.prompt("Edit column title:", column.title);
+    if (newTitle) {
+      dispatch({ type: 'RENAME_COLUMN', payload: { id: column.id, newTitle } });
+    }
+  };
+
   return (
     <div className="flex-shrink-0 w-80 bg-gray-800 rounded-lg p-4 shadow-lg h-full max-h-screen flex flex-col">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold text-gray-300">{column.title}</h2>
-        <button
-          onClick={handleDeleteColumn}
-          className="text-gray-400 hover:text-red-500 font-bold transition-colors duration-200 leading-none px-2"
-          aria-label="Delete column"
-        >
-          Delete
-        </button>
+        <div>
+          <button onClick={handleEditColumn} className='text-gray-400 hover:text-blue-500 font-bold transition-colors duration-200 leading-none px-2' aria-label="Edit column">
+            Edit
+          </button>
+
+          <button
+            onClick={handleDeleteColumn}
+            className="text-gray-400 hover:text-red-500 font-bold transition-colors duration-200 leading-none px-2"
+            aria-label="Delete column"
+          >
+            Delete
+          </button>
+        </div>
       </div>
 
       <Droppable droppableId={column.id}>

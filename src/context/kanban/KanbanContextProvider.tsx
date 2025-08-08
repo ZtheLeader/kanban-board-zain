@@ -16,11 +16,12 @@ const initialState: KanbanStateType = {
     'column-3': { id: 'column-3', title: 'Done', taskIds: [] },
   },
   tasks: {},
+  columnOrder: ['column-1', 'column-2', 'column-3'],
 };
 
 export const KanbanProvider = ({ children }: KanbanProviderProps) => {
   const [localState, setLocalState] = useLocalStorage<KanbanStateType>('kanban-board-state', initialState);
-  
+
   const [state, dispatch] = useReducer(kanbanReducer, localState);
 
   useEffect(() => {

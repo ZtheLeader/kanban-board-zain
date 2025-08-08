@@ -8,7 +8,8 @@ export type Action =
   | { type: 'EDIT_TASK'; payload: { taskId: string; title: string; description: string } }
   | { type: 'DELETE_TASK'; payload: { taskId: string; columnId: string } }
   | { type: 'MOVE_TASK'; payload: { taskId: string; fromColumnId: string; toColumnId: string; newIndex: number } }
-  | { type: 'REORDER_TASK_IN_COLUMN'; payload: { taskId: string; columnId: string; newIndex: number } };
+  | { type: 'REORDER_TASK_IN_COLUMN'; payload: { taskId: string; columnId: string; newIndex: number } }
+  | { type: 'REARRANGE_COLUMNS'; payload: { columnOrder: string[] } };
 
 
 export const kanbanReducer = (state: KanbanStateType, action: Action): KanbanStateType => {
@@ -16,7 +17,7 @@ export const kanbanReducer = (state: KanbanStateType, action: Action): KanbanSta
     case 'ADD_COLUMN': {
       const { id, title } = action.payload;
       return {
-        ...state, 
+        ...state,
         columns: {
           ...state.columns,
           [id]: { id, title, taskIds: [] },
@@ -149,6 +150,13 @@ export const kanbanReducer = (state: KanbanStateType, action: Action): KanbanSta
             taskIds: newTasksIds,
           },
         },
+      };
+    }
+    case 'REARRANGE_COLUMNS': {
+      const { columnOrder } = action.payload;
+      return {
+        ...state,
+        columnOrder,
       };
     }
     default:

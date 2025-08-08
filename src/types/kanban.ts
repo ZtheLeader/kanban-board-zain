@@ -13,4 +13,5 @@ export type ColumnType = {
 export type KanbanStateType = {
   columns: { [key: string]: ColumnType };
   tasks: { [key: string]: TaskType };
+  columnOrder: string[];
 };

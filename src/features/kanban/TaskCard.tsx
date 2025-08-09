@@ -6,9 +6,10 @@ type TaskCardProps = {
   task: TaskType;
   columnId: string;
   index: number;
+  onClick: (taskId: string, columnId: string) => void;
 };
 
-const TaskCard = ({ task, columnId, index }: TaskCardProps) => {
+const TaskCard = ({ task, columnId, index, onClick }: TaskCardProps) => {
   const { dispatch } = useKanban();
 
   const handleDeleteTask = () => {
@@ -37,6 +38,7 @@ const TaskCard = ({ task, columnId, index }: TaskCardProps) => {
     <Draggable draggableId={task.id} index={index}>
       {(provided, snapshot) => (
         <div
+          onClick={() => onClick(task.id, columnId)}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}

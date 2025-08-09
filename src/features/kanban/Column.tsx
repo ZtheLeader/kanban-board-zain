@@ -5,9 +5,10 @@ import TaskCard from './TaskCard';
 
 type ColumnProps = {
   column: ColumnType;
+  onTaskClick: (taskId: string, columnId: string) => void;
 };
 
-const Column = ({ column }: ColumnProps) => {
+const Column = ({ column, onTaskClick }: ColumnProps) => {
   const { state, dispatch } = useKanban();
 
   const tasks = column.taskIds.map(taskId => state.tasks[taskId]);
@@ -67,7 +68,7 @@ const Column = ({ column }: ColumnProps) => {
             className={`flex flex-col gap-2 overflow-y-auto transition-colors duration-200 ${snapshot.isDraggingOver ? 'bg-gray-700' : ''} min-h-[1px]`}
           >
             {tasks.map((task, index) => (
-              <TaskCard key={task.id} task={task} index={index} columnId={column.id} />
+              <TaskCard key={task.id} task={task} index={index} columnId={column.id} onClick={onTaskClick} />
             ))}
             {provided.placeholder}
           </div>

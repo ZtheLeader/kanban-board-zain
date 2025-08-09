@@ -13,19 +13,12 @@ const KanbanBoard = () => {
   const onDragEnd = (result: DropResult) => {
     const { destination, source, draggableId, type } = result;
 
-    if (!destination) {
-      return;
-    }
-
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
+    if (!destination || (destination.droppableId === source.droppableId && destination.index === source.index)) {
       return;
     }
 
     if (type === 'COLUMN') {
-      const newColumnOrder: string[] = Array.from(state.columnOrder);
+      const newColumnOrder = Array.from(state.columnOrder);
       const [movedColumn] = newColumnOrder.splice(source.index, 1);
       newColumnOrder.splice(destination.index, 0, movedColumn);
 
@@ -33,9 +26,7 @@ const KanbanBoard = () => {
         type: 'REARRANGE_COLUMNS',
         payload: { columnOrder: newColumnOrder },
       });
-      return;
     }
-
     if (type === 'TASK') {
       if (destination.droppableId === source.droppableId) {
         dispatch({
@@ -46,18 +37,17 @@ const KanbanBoard = () => {
             newIndex: destination.index,
           },
         });
-        return;
+      } else {
+        dispatch({
+          type: 'MOVE_TASK',
+          payload: {
+            taskId: draggableId,
+            fromColumnId: source.droppableId,
+            toColumnId: destination.droppableId,
+            newIndex: destination.index,
+          },
+        });
       }
-
-      dispatch({
-        type: 'MOVE_TASK',
-        payload: {
-          taskId: draggableId,
-          fromColumnId: source.droppableId,
-          toColumnId: destination.droppableId,
-          newIndex: destination.index,
-        },
-      });
     }
   };
 

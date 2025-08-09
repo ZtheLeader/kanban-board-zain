@@ -59,7 +59,7 @@ const Column = ({ column }: ColumnProps) => {
         </div>
       </div>
 
-      <Droppable droppableId={column.id}>
+      <Droppable droppableId={column.id} type="TASK">
         {(provided, snapshot) => (
           <div
             {...provided.droppableProps}

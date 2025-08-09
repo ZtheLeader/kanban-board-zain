@@ -70,14 +70,14 @@ const KanbanBoard = () => {
   };
 
   return (
-    <div>
+    <div className="h-full">
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="board" type="COLUMN" direction="horizontal">
           {(provided) => (
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}
-              className="flex-1 overflow-x-auto p-4 flex gap-4 bg-gray-900 text-white"
+              className="h-full flex-1 overflow-x-auto p-4 flex gap-4 bg-gray-900 text-white"
             >
               {state.columnOrder.map((columnId: string, index: number) => (
                 <Draggable key={columnId} draggableId={columnId} index={index}>

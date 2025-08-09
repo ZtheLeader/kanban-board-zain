@@ -9,7 +9,10 @@ export type Action =
   | { type: 'DELETE_TASK'; payload: { taskId: string; columnId: string } }
   | { type: 'MOVE_TASK'; payload: { taskId: string; fromColumnId: string; toColumnId: string; newIndex: number } }
   | { type: 'REORDER_TASK_IN_COLUMN'; payload: { taskId: string; columnId: string; newIndex: number } }
-  | { type: 'REARRANGE_COLUMNS'; payload: { columnOrder: string[] } };
+  | { type: 'REARRANGE_COLUMNS'; payload: { columnOrder: string[] } }
+  | { type: 'ADD_COMMENT'; payload: { commentId: string; taskId: string; text: string } }
+  | { type: 'EDIT_COMMENT'; payload: { commentId: string; newText: string } }
+  | { type: 'DELETE_COMMENT'; payload: { commentId: string; taskId: string } };
 
 
 export const kanbanReducer = (state: KanbanStateType, action: Action): KanbanStateType => {
@@ -60,7 +63,7 @@ export const kanbanReducer = (state: KanbanStateType, action: Action): KanbanSta
       const { taskId, columnId, title, description } = action.payload;
       const newTasks = {
         ...state.tasks,
-        [taskId]: { id: taskId, title, description },
+        [taskId]: { id: taskId, title, description, commentIds: [] },
       };
       const newColumnTaskIds = [...state.columns[columnId].taskIds, taskId];
       const newColumns = {
@@ -157,6 +160,55 @@ export const kanbanReducer = (state: KanbanStateType, action: Action): KanbanSta
       return {
         ...state,
         columnOrder,
+      };
+    }
+    case 'ADD_COMMENT': {
+      const { commentId, taskId, text } = action.payload;
+      const newComments = {
+        ...state.comments,
+        [commentId]: { id: commentId, taskId, text },
+      };
+      const newTasks = {
+        ...state.tasks,
+        [taskId]: {
+          ...state.tasks[taskId],
+          commentIds: [...state.tasks[taskId].commentIds, commentId],
+        },
+      };
+      return {
+        ...state,
+        comments: newComments,
+        tasks: newTasks,
+      };
+    }
+    case 'EDIT_COMMENT': {
+      const { commentId, newText } = action.payload;
+      return {
+        ...state,
+        comments: {
+          ...state.comments,
+          [commentId]: {
+            ...state.comments[commentId],
+            text: newText,
+          },
+        },
+      };
+    }
+    case 'DELETE_COMMENT': {
+      const { commentId, taskId } = action.payload;
+      const newComments = { ...state.comments };
+      delete newComments[commentId];
+      const newTasks = {
+        ...state.tasks,
+        [taskId]: {
+          ...state.tasks[taskId],
+          commentIds: state.tasks[taskId].commentIds.filter(id => id !== commentId),
+        },
+      };
+      return {
+        ...state,
+        comments: newComments,
+        tasks: newTasks,
       };
     }
     default:

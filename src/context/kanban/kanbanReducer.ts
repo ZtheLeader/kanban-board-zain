@@ -25,6 +25,7 @@ export const kanbanReducer = (state: KanbanStateType, action: Action): KanbanSta
           ...state.columns,
           [id]: { id, title, taskIds: [] },
         },
+        columnOrder: [...state.columnOrder, id],
       };
     }
     case 'RENAME_COLUMN': {
@@ -57,6 +58,7 @@ export const kanbanReducer = (state: KanbanStateType, action: Action): KanbanSta
         ...state,
         columns: newColumns,
         tasks: newTasks,
+        columnOrder: state.columnOrder.filter(columnId => columnId !== id),
       };
     }
     case 'ADD_TASK': {

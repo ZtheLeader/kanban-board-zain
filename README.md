@@ -93,3 +93,7 @@ npm test
 ```bash
 yarn test
 ```
+
+---
+
+**Made with ❤️ by [Zain](https://www.linkedin.com/in/ztheleader)**

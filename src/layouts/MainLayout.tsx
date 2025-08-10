@@ -2,7 +2,7 @@ type MainLayoutProps = {
   children: React.ReactNode;
 };
 
-const MainLayout = ({ children }: MainLayoutProps) => {
+export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
     <div className="flex flex-col h-screen bg-gray-900 text-white">
       <header className="bg-gray-800 shadow-md py-4 px-6">
@@ -19,5 +19,3 @@ const MainLayout = ({ children }: MainLayoutProps) => {
     </div>
   );
 };
-
-export default MainLayout;

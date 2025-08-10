@@ -1,7 +1,8 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import KanbanBoard from '../features/kanban/KanbanBoard';
 
-const AppRoutes = () => (
+import { KanbanBoard } from '../features/kanban/KanbanBoard';
+
+export const AppRoutes: React.FC = () => (
   <Routes>
     <Route path="/" element={<Navigate to="/boards" replace />} />
     <Route path="/boards" element={<KanbanBoard />} />
@@ -15,5 +16,3 @@ const AppRoutes = () => (
     />
   </Routes>
 );
-
-export default AppRoutes;

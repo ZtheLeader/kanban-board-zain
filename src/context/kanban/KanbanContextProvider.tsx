@@ -1,4 +1,4 @@
-import { useEffect, useReducer, type ReactNode } from "react";
+import { useEffect, useReducer } from "react";
 
 import { KanbanContext } from "./KanbanContext";
 import { kanbanReducer } from "./kanbanReducer";
@@ -7,11 +7,7 @@ import { initialState } from "../../utils/constants";
 
 import type { KanbanStateType } from "../../types/kanban";
 
-type KanbanProviderProps = {
-  children: ReactNode;
-};
-
-export const KanbanProvider = ({ children }: KanbanProviderProps) => {
+export const KanbanProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [localState, setLocalState] = useLocalStorage<KanbanStateType>('kanban-board-state', initialState);
 
   const [state, dispatch] = useReducer(kanbanReducer, localState);

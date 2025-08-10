@@ -7,7 +7,7 @@ import Column from './Column';
 import TaskDetailModal from './TaskDetailModal';
 
 
-const KanbanBoard = () => {
+export const KanbanBoard: React.FC = () => {
   const { state, dispatch } = useKanban();
 
   const [modalState, setModalState] = useState({
@@ -116,5 +116,3 @@ const KanbanBoard = () => {
     </div>
   );
 };
-
-export default KanbanBoard;

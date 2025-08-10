@@ -14,7 +14,17 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       <main className="flex-1 flex flex-col">{children}</main>
 
       <footer className="bg-gray-800 py-3 text-center text-gray-500 text-sm">
-        <p>Made with ❤️ by Zain.</p>
+        <p>
+          Made with ❤️ by{' '}
+          <a
+            href="https://www.linkedin.com/in/ztheleader"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-400 hover:text-blue-500 transition-colors duration-200 ease-in-out"
+          >
+            Zain
+          </a>
+        </p>
       </footer>
     </div>
   );

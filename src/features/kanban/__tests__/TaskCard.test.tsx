@@ -1,6 +1,8 @@
 import { render, screen, fireEvent } from '@testing-library/react';
+
 import { vi } from 'vitest';
 import { DragDropContext, Droppable } from '@hello-pangea/dnd';
+
 import { KanbanProvider } from '../../../context/kanban/KanbanContextProvider';
 import TaskCard from '../TaskCard';
 

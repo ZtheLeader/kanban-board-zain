@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { DragDropContext, Droppable, Draggable, type DropResult } from '@hello-pangea/dnd';
+
 import { useKanban } from '../../context/kanban/useKanban';
 import Column from './Column';
 import TaskDetailModal from './TaskDetailModal';

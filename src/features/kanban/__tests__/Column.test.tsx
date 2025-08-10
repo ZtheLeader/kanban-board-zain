@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { vi } from 'vitest';
 import { DragDropContext } from '@hello-pangea/dnd';
+
 import Column from '../Column';
 import { KanbanProvider } from '../../../context/kanban/KanbanContextProvider';
 

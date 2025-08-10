@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { vi } from 'vitest';
+
 import { KanbanProvider } from '../../../context/kanban/KanbanContextProvider';
 import TaskDetailModal from '../TaskDetailModal';
 

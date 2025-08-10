@@ -2,9 +2,10 @@ import { useEffect, useReducer, type ReactNode } from "react";
 
 import { KanbanContext } from "./KanbanContext";
 import { kanbanReducer } from "./kanbanReducer";
-import type { KanbanStateType } from "../../types/kanban";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { initialState } from "../../utils/constants";
+
+import type { KanbanStateType } from "../../types/kanban";
 
 type KanbanProviderProps = {
   children: ReactNode;

@@ -1,5 +1,7 @@
 import { Draggable } from "@hello-pangea/dnd";
+
 import { useKanban } from "../../context/kanban/useKanban";
+
 import type { TaskType } from "../../types/kanban";
 
 type TaskCardProps = {

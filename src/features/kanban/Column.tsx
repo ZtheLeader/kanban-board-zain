@@ -1,7 +1,9 @@
 import { Droppable } from '@hello-pangea/dnd';
+
 import { useKanban } from '../../context/kanban/useKanban';
-import type { ColumnType } from '../../types/kanban';
 import TaskCard from './TaskCard';
+
+import type { ColumnType } from '../../types/kanban';
 
 type ColumnProps = {
   column: ColumnType;

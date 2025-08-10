@@ -58,3 +58,15 @@ This is a Kanban board application built with React, TypeScript, and Tailwind CS
    ```
 
 4. Open the application in your browser at `http://localhost:5173`.
+
+## How to Run the Project
+
+### Tests
+To run the tests, use the following command:
+```bash
+npm test
+```
+# or
+```bash
+yarn test
+```

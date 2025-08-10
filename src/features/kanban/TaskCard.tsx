@@ -23,13 +23,13 @@ const TaskCard = ({ task, columnId, index, onClick }: TaskCardProps) => {
     const newTitle = window.prompt("Edit task title:", task.title);
     const newDescription = window.prompt("Edit task description:", task.description || "");
     if (newTitle !== null && newDescription !== null) {
-      dispatch({ 
-        type: 'EDIT_TASK', 
-        payload: { 
-          taskId: task.id, 
-          title: newTitle, 
-          description: newDescription 
-        } 
+      dispatch({
+        type: 'EDIT_TASK',
+        payload: {
+          taskId: task.id,
+          title: newTitle,
+          description: newDescription
+        }
       });
     }
   };
@@ -50,6 +50,7 @@ const TaskCard = ({ task, columnId, index, onClick }: TaskCardProps) => {
               {task.description && (
                 <span className="text-xs text-gray-500 truncate" title={task.description}>{task.description}</span>
               )}
+              <span className="text-xs text-gray-400">{task.commentIds.length} comment(s)</span>
             </div>
             <div className="flex gap-2">
               <button

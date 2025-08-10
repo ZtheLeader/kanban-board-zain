@@ -6,8 +6,8 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
     <div className="flex flex-col h-screen bg-gray-900 text-white">
       <header className="bg-gray-800 shadow-md py-4 px-6">
-        <div className="container mx-auto">
-          <h1 className="text-2xl font-bold">Kanban Board App</h1>
+        <div className="flex items-center justify-start w-full">
+          <h1 className="text-2xl font-bold px-4">Kanban Board App</h1>
         </div>
       </header>
 

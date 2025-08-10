@@ -12,4 +12,5 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './src/utils/setupTests.ts',
   },
+  base: '/kanban-board-zain'
 });

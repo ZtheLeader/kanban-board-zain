@@ -12,22 +12,42 @@ This is a Kanban board application built with React, TypeScript, and Tailwind CS
 ## Directory Structure
 ```
 .
-├── public/                # Static assets
+├── public/                    # Static assets
+│   └── vite.svg
 ├── src/
 │   ├── context/
-│   │   └── kanban/       # Kanban context and reducer
+│   │   └── kanban/            # Kanban context, reducer, and hooks
 │   ├── features/
-│   │   └── kanban/       # Kanban board components
-│   ├── hooks/            # Custom hooks
-│   ├── layouts/          # Main layout components
-│   ├── routes/           # Application routes
-│   ├── types/            # TypeScript types
-│   └── utils/            # Utility functions
-├── eslint.config.js       # ESLint configuration
-├── tailwind.config.js     # Tailwind CSS configuration
-├── tsconfig.json          # TypeScript configuration
-├── vite.config.ts         # Vite configuration
-└── README.md              # Project documentation
+│   │   └── kanban/
+│   │       ├── Column.tsx
+│   │       ├── KanbanBoard.tsx
+│   │       ├── TaskCard.tsx
+│   │       ├── TaskDetailModal.tsx
+│   │       └── __tests__/     # Component tests
+│   ├── hooks/
+│   │   ├── useLocalStorage.ts
+│   │   └── __tests__/         # Hook tests
+│   ├── layouts/
+│   │   └── MainLayout.tsx
+│   ├── routes/
+│   │   └── index.tsx
+│   ├── types/
+│   │   └── kanban.ts
+│   ├── utils/
+│   │   ├── constants.ts
+│   │   └── setupTests.ts
+│   ├── index.css
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── vite-env.d.ts
+├── eslint.config.js           # ESLint configuration
+├── tailwind.config.js         # Tailwind CSS configuration
+├── tsconfig.json              # TypeScript configuration
+├── tsconfig.app.json
+├── tsconfig.node.json
+├── vite.config.ts             # Vite configuration
+├── package.json
+└── README.md                  # Project documentation
 ```
 
 ## How to Run the Project

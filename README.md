@@ -16,7 +16,7 @@ This is a Kanban board application built with React, TypeScript, and Tailwind CS
 │   └── vite.svg
 ├── src/
 │   ├── context/
-│   │   └── kanban/            # Kanban context, reducer, and hooks
+│   │   └── kanban/            # Kanban context and hooks
 │   ├── features/
 │   │   └── kanban/
 │   │       ├── Column.tsx
@@ -24,6 +24,11 @@ This is a Kanban board application built with React, TypeScript, and Tailwind CS
 │   │       ├── TaskCard.tsx
 │   │       ├── TaskDetailModal.tsx
 │   │       └── __tests__/     # Component tests
+│   ├── reducer/              # Board, column, and task reducers
+│   │   ├── boardReducer.ts
+│   │   ├── columnReducer.ts
+│   │   ├── taskReducer.ts
+│   │   └── index.ts           # Root kanbanReducer
 │   ├── hooks/
 │   │   ├── useLocalStorage.ts
 │   │   └── __tests__/         # Hook tests

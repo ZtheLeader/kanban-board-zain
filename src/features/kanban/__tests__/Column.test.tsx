@@ -12,8 +12,8 @@ const mockColumn = {
 };
 
 const mockTasks = {
-  'task-1': { id: 'task-1', title: 'Task 1', description: 'Description 1' },
-  'task-2': { id: 'task-2', title: 'Task 2', description: 'Description 2' },
+  'task-1': { id: 'task-1', title: 'Task 1', description: 'Description 1', commentIds: [] },
+  'task-2': { id: 'task-2', title: 'Task 2', description: 'Description 2', commentIds: [] },
 };
 
 const mockOnTaskClick = vi.fn();

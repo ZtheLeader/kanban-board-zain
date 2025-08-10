@@ -1,7 +1,7 @@
 import { useEffect, useReducer } from "react";
 
 import { KanbanContext } from "./KanbanContext";
-import { kanbanReducer } from "./kanbanReducer";
+import { kanbanReducer } from "../../reducer";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { initialState } from "../../utils/constants";
 
